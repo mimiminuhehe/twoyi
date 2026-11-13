@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,11 +18,21 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      - name: Install Rust & Android Targets
+      - name: Setup Android SDK & NDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install NDK & CMake
+        run: |
+          sdkmanager --install "ndk;21.4.7075529" "cmake;3.18.1"
+
+      - name: Install Rust & Cargo NDK
         run: |
           rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android i686-linux-android
+          cargo install cargo-ndk
 
       - name: Build Debug APK
+        env:
+          ANDROID_NDK_HOME: ${{ env.ANDROID_HOME }}/ndk/21.4.7075529
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug
