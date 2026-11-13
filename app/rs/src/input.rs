@@ -18,13 +18,13 @@ use log::info;
 
 const FF_MAX: u16 = 0x7f;
 
-const TOUCH_PATH: &'static str = "/data/data/io.twoyi/rootfs/dev/input/touch";
+const TOUCH_PATH: &'static str = "/data/data/com.google.enterprise.webapp.x40db2d910196fec3/rootfs/dev/input/touch";
 const TOUCH_DEVICE_NAME: &'static str = "vtouch";
 const TOUCH_DEVICE_UNIQUE_ID: &'static str = "<vtouch 0>";
 
 const KEY_DEVICE_NAME: &'static str = "vkey";
 const KEY_DEVICE_UNIQUE_ID: &'static str = "<keyboard 0>";
-const KEY_PATH: &'static str = "/data/data/io.twoyi/rootfs/dev/input/key0";
+const KEY_PATH: &'static str = "/data/data/com.google.enterprise.webapp.x40db2d910196fec3/rootfs/dev/input/key0";
 
 #[repr(C)]
 #[derive(Clone, Copy)]

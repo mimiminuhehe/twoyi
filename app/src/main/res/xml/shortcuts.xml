@@ -16,7 +16,7 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:targetClass="io.twoyi.ui.SettingsActivity"
-            android:targetPackage="io.twoyi" />
+            android:targetPackage="com.google.enterprise.webapp.x40db2d910196fec3" />
     </shortcut>
 
 </shortcuts>

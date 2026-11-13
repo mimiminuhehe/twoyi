@@ -185,7 +185,7 @@ public class SettingsActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     Crashes.trackError(e);
                 }
-                Uri uri = FileProvider.getUriForFile(context, "io.twoyi.fileprovider", tmpLog);
+                Uri uri = FileProvider.getUriForFile(context, "com.google.enterprise.webapp.x40db2d910196fec3.fileprovider", tmpLog);
 
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.putExtra(Intent.EXTRA_STREAM, uri);

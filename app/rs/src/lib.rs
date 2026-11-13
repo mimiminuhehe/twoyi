@@ -94,8 +94,8 @@ pub fn renderer_init(
         });
 
         let loader_path: String = env.get_string(loader.into()).unwrap().into();
-        let working_dir = "/data/data/io.twoyi/rootfs";
-        let log_path = "/data/data/io.twoyi/log.txt";
+        let working_dir = "/data/data/com.google.enterprise.webapp.x40db2d910196fec3/rootfs";
+        let log_path = "/data/data/com.google.enterprise.webapp.x40db2d910196fec3/log.txt";
         let outputs = File::create(log_path).unwrap();
         let errors = outputs.try_clone().unwrap();
         let _ = Command::new("./init")

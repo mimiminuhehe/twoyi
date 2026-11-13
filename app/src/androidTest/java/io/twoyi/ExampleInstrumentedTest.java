@@ -27,6 +27,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("io.twoyi", appContext.getPackageName());
+        assertEquals("com.google.enterprise.webapp.x40db2d910196fec3", appContext.getPackageName());
     }
 }
