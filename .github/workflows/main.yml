@@ -22,7 +22,7 @@ jobs:
         run: |
           export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
           yes | sdkmanager --licenses > /dev/null 2>&1 || true
-          sdkmanager --install "ndk;21.4.7075529" "cmake;3.18.1"
+          sdkmanager --install "ndk;23.1.7779620" "cmake;3.18.1"
 
       - name: Install Rust & Cargo XDK
         run: |
@@ -31,8 +31,8 @@ jobs:
 
       - name: Build Debug APK
         run: |
-          export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/21.4.7075529"
-          export ANDROID_NDK_ROOT="$ANDROID_HOME/ndk/21.4.7075529"
+          export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/23.1.7779620"
+          export ANDROID_NDK_ROOT="$ANDROID_HOME/ndk/23.1.7779620"
           chmod +x gradlew
           ./gradlew assembleDebug
 
