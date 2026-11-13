@@ -30,10 +30,9 @@ jobs:
           cargo install cargo-xdk
 
       - name: Build Debug APK
-        env:
-          ANDROID_NDK_HOME: ${{ env.ANDROID_HOME }}/ndk/21.4.7075529
-          ANDROID_NDK_ROOT: ${{ env.ANDROID_HOME }}/ndk/21.4.7075529
         run: |
+          export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/21.4.7075529"
+          export ANDROID_NDK_ROOT="$ANDROID_HOME/ndk/21.4.7075529"
           chmod +x gradlew
           ./gradlew assembleDebug
 
