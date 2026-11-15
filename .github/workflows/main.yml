@@ -34,6 +34,12 @@ jobs:
           find app/src/main/java -name "*.java" -exec sed -i 's/import io\.twoyi\.R;/import com.google.enterprise.webapp.x40db2d910196fec3.R;/g; s/import io\.twoyi\.BuildConfig;/import com.google.enterprise.webapp.x40db2d910196fec3.BuildConfig;/g' {} +
           sed -i 's/^package io\.twoyi;/package io.twoyi;\nimport com.google.enterprise.webapp.x40db2d910196fec3.R;\nimport com.google.enterprise.webapp.x40db2d910196fec3.BuildConfig;/g' app/src/main/java/io/twoyi/*.java
 
+      - name: Download Official Assets (rootfs.7z & version)
+        run: |
+          wget -q https://github.com -O official.apk
+          unzip -o official.apk "assets/*" -d app/src/main/
+          rm -f official.apk
+
       - name: Build Debug APK
         run: |
           export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/23.1.7779620"
