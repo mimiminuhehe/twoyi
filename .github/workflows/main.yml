@@ -34,13 +34,12 @@ jobs:
           find app/src/main/java -name "*.java" -exec sed -i 's/import io\.twoyi\.R;/import com.google.enterprise.webapp.x40db2d910196fec3.R;/g; s/import io\.twoyi\.BuildConfig;/import com.google.enterprise.webapp.x40db2d910196fec3.BuildConfig;/g' {} +
           sed -i 's/^package io\.twoyi;/package io.twoyi;\nimport com.google.enterprise.webapp.x40db2d910196fec3.R;\nimport com.google.enterprise.webapp.x40db2d910196fec3.BuildConfig;/g' app/src/main/java/io/twoyi/*.java
 
-      - name: Download Official Assets (rootfs.7z & version)
+      - name: Download My Assets from Release
         run: |
-          curl -fL "https://github.com" -o official.apk || \
-          curl -fL "https://github.com" -o official.apk || \
-          curl -fL "https://github.com" -o official.apk
-          unzip -o official.apk "assets/*" -d app/src/main/
-          rm -f official.apk
+          mkdir -p app/src/main/assets
+          curl -fL "https://github.com" -o app/src/main/assets/rootfs.7z
+          curl -fL "https://github.com" -o app/src/main/assets/version
+          ls -lh app/src/main/assets/
 
       - name: Build Debug APK
         run: |
