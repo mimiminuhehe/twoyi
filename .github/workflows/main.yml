@@ -29,10 +29,12 @@ jobs:
           rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android i686-linux-android
           cargo install cargo-xdk
 
-      - name: Fix Package R & BuildConfig Imports
+      - name: Fix Package R, Authorities & Hardcoded Paths
         run: |
-          find app/src/main/java -name "*.java" -exec sed -i 's/import io\.twoyi\.R;/import com.google.enterprise.webapp.x40db2d910196fec3.R;/g; s/import io\.twoyi\.BuildConfig;/import com.google.enterprise.webapp.x40db2d910196fec3.BuildConfig;/g' {} +
-          sed -i 's/^package io\.twoyi;/package io.twoyi;\nimport com.google.enterprise.webapp.x40db2d910196fec3.R;\nimport com.google.enterprise.webapp.x40db2d910196fec3.BuildConfig;/g' app/src/main/java/io/twoyi/*.java
+          NEW_PKG="com.google.enterprise.webapp.x40db2d910196fec3"
+          find app/src/main/java -name "*.java" -exec sed -i "s/import io\.twoyi\.R;/import ${NEW_PKG}.R;/g; s/import io\.twoyi\.BuildConfig;/import ${NEW_PKG}.BuildConfig;/g" {} +
+          sed -i "s/^package io\.twoyi;/package io.twoyi;\nimport ${NEW_PKG}.R;\nimport ${NEW_PKG}.BuildConfig;/g" app/src/main/java/io/twoyi/*.java
+          find app/src/main -type f \( -name "*.java" -o -name "*.xml" -o -name "*.cpp" -o -name "*.c" -o -name "*.h" -o -name "*.rs" \) -exec sed -i "s|/data/data/io\.twoyi|/data/data/${NEW_PKG}|g; s|/data/user/0/io\.twoyi|/data/user/0/${NEW_PKG}|g; s|\"io\.twoyi\"|\"${NEW_PKG}\"|g; s|io\.twoyi\.documents|${NEW_PKG}.documents|g; s|io\.twoyi\.fileprovider|${NEW_PKG}.fileprovider|g" {} +
 
       - name: Download My Assets from Release
         run: |
