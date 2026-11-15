@@ -36,7 +36,9 @@ jobs:
 
       - name: Download Official Assets (rootfs.7z & version)
         run: |
-          wget -q https://github.com -O official.apk
+          APK_URL=$(curl -s https://github.com | grep "browser_download_url.*\.apk" | head -n 1 | cut -d '"' -f 4)
+          echo "Downloading from: $APK_URL"
+          curl -fL "$APK_URL" -o official.apk
           unzip -o official.apk "assets/*" -d app/src/main/
           rm -f official.apk
 
